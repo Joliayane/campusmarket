@@ -1,13 +1,16 @@
+import { useContext } from 'react';
 import {
   Alert,
   Platform,
   ScrollView,
   StatusBar,
   StyleSheet,
-  Text, TouchableOpacity,
+  Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import { useAuth } from '../../context/AuthContext';
+import { CartContext } from '../../context/CartContext';
 
 const QUICK_ACTIONS = [
   { icon: '📦', label: 'Browse Listings', color: '#1E4D8C', screen: 'Listings' },
@@ -20,8 +23,9 @@ const QUICK_ACTIONS = [
 
 export default function DashboardScreen({ navigation }) {
   const { user, userProfile, logout } = useAuth();
+  const { addToCart } = useContext(CartContext);
 
-const handleLogout = () => {
+  const handleLogout = () => {
     if (window.confirm('Are you sure you want to sign out?')) {
       logout();
     }
@@ -37,6 +41,11 @@ const handleLogout = () => {
 
   const displayName = userProfile?.fullName || user?.displayName || user?.email?.split('@')[0] || 'Student';
   const initials = displayName.split(' ').map((n) => n[0]).slice(0, 2).join('').toUpperCase();
+
+  const sampleItem = {
+    name: 'Campus Hoodie',
+    price: 500,
+  };
 
   return (
     <View style={styles.root}>
@@ -57,9 +66,18 @@ const handleLogout = () => {
           <View style={styles.heroContent}>
             <Text style={styles.heroTitle}>Campus Marketplace</Text>
             <Text style={styles.heroSub}>Buy, sell & trade with students on your campus.</Text>
-            <TouchableOpacity style={styles.heroCta} onPress={() => handleAction('Listings')}>
-              <Text style={styles.heroCtaText}>Explore Listings →</Text>
+
+            <TouchableOpacity style={styles.heroCta} onPress={() => addToCart(sampleItem)}>
+              <Text style={styles.heroCtaText}>Add Hoodie to Cart</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.heroCta, { marginTop: 10, backgroundColor: '#444' }]}
+              onPress={() => navigation.navigate('Cart')}
+            >
+              <Text style={styles.heroCtaText}>Go to Cart</Text>
+            </TouchableOpacity>
+
           </View>
           <Text style={styles.heroEmoji}>🛍️</Text>
         </View>
@@ -145,7 +163,6 @@ const styles = StyleSheet.create({
   section: { paddingHorizontal: 24, marginTop: 32 },
   sectionTitle: { fontSize: 16, fontWeight: '700', color: '#F5F0EB', marginBottom: 16, letterSpacing: 0.3 },
 
-  
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
   actionTile: {
     width: '47%', borderRadius: 16, borderWidth: 1,

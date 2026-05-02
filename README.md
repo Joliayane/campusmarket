@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
@@ -48,3 +49,18 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+=======
+# CampusMarket Project
+
+## Group Members Contributions
+
+- Labiste - Created feature file/Product listing feature module and demonstrated branch workflow
+- Genobisa - product listing update
+- Ibanez - UI improvements
+
+## Git Workflow Used
+
+- Branching per member
+- Individual commits
+- Pull request merging into main
+>>>>>>> b61b669 (Clean reset: removed all files and reinitialized project)
