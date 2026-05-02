@@ -1,6 +1,6 @@
-// src/navigation/AppNavigator.js
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import CartScreen from '../screens/app/CartScreen'; // ✅ ADD THIS
+
+import CartScreen from '../screens/app/CartScreen';
 import DashboardScreen from '../screens/app/DashboardScreen';
 import ProfileScreen from '../screens/app/ProfileScreen';
 
@@ -14,11 +14,11 @@ export default function AppNavigator() {
     >
       <Stack.Screen name="Dashboard" component={DashboardScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
-      <Stack.Screen name="Cart" component={CartScreen} /> {/* ✅ ADD THIS */}
+      <Stack.Screen name="Cart" component={CartScreen} />
 
       {/* Future screens */}
-      {/* <Stack.Screen name="Listings" component={ListingsScreen} /> */}
-      {/* <Stack.Screen name="PostItem" component={PostItemScreen} /> */}
+      <Stack.Screen name="Listings" component={() => null} />
+      <Stack.Screen name="PostItem" component={() => null} />
     </Stack.Navigator>
   );
 }
